@@ -55,6 +55,7 @@ go-ip-fraud-check provides both of cli binary and golang API.
 
 # Supported Providers
 
+- [IP2Proxy](https://www.ip2location.com/web-service/ip2proxy)
 - [ipdata.co](https://ipdata.co/)
 - [ipinfo.io](https://ipinfo.io/)
 - [MaxMind minFraud](https://www.maxmind.com/en/solutions/minfraud-services/)
@@ -221,6 +222,8 @@ see example dir for more examples.
 
 | Name | Description |
 |:--|:--|
+| `FRAUD_CHECK_IP2PROXY_APIKEY` | [ip2proxy API key](https://www.ip2location.com/web-service/ip2proxy/). |
+| `FRAUD_CHECK_IP2PROXY_PACKAGE` | [ip2proxy package parameter](https://www.ip2location.com/web-service/ip2proxy/). |
 | `FRAUD_CHECK_IPDATACO_APIKEY` | [ipdata.co API key](https://docs.ipdata.co/). |
 | `FRAUD_CHECK_IPINFOIO_TOKEN` | [ipinfo.io API token](https://ipinfo.io/developers). |
 | `MINFRAUD_ACCOUNT_ID` | [MaxMind Account ID](https://support.maxmind.com/account-faq/license-keys/how-do-i-generate-a-license-key/). |

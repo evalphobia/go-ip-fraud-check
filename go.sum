@@ -6,6 +6,8 @@ github.com/evalphobia/minfraud-api-go v0.0.1 h1:l8cJTsPqT1BXOXfEz+lgmp2FilZVmJgS
 github.com/evalphobia/minfraud-api-go v0.0.1/go.mod h1:HbaNnKZFs1GIEG31WfkQn8IESDaK5zilPXDPiW7HmSI=
 github.com/google/go-cmp v0.5.6 h1:BKbKCqvP6I+rmFHt06ZmyQtvB8xAkWdhFyr0ZUNZcxQ=
 github.com/google/go-cmp v0.5.6/go.mod h1:v8dTdLbMG2kIc/vJvl+f65V22dbkXbowE6jgT/gNBxE=
+github.com/ip2location/ip2proxy-go/v3 v3.3.2 h1:jwZXJQZ+tQ17PMUjuF2nOGQXF/5zEYCIChr7g6wlr5o=
+github.com/ip2location/ip2proxy-go/v3 v3.3.2/go.mod h1:QsYxbbXHRLQlb+JtOFdPSoqTVBDxfTNYRlWMETIiJbM=
 github.com/ipdata/go v0.7.2 h1:Ly+xBqMSUF1kmd6UK12wW0CGL7a/JDrbOcV8tUd+120=
 github.com/ipdata/go v0.7.2/go.mod h1:JKi7SLHzLMj6fbFwUDZLqY2QP1BMGjktwgb/ALjvTdw=
 github.com/ipinfo/go/v2 v2.5.4 h1:bfoNG2FJ+/SNwdTd/LlN8AJ0BrJf/W7Ko4FNGwv9Ohk=

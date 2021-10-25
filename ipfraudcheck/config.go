@@ -9,13 +9,23 @@ import (
 )
 
 const (
-	envIPdatacoAPIKey = "FRAUD_CHECK_IPDATACO_APIKEY"
-	envIPinfoioToken  = "FRAUD_CHECK_IPINFOIO_TOKEN"
+	envIP2ProxyAPIKey     = "FRAUD_CHECK_IP2PROXY_APIKEY"
+	envIP2ProxyAPIPackage = "FRAUD_CHECK_IP2PROXY_PACKAGE"
+	envIPdatacoAPIKey     = "FRAUD_CHECK_IPDATACO_APIKEY"
+	envIPinfoioToken      = "FRAUD_CHECK_IPINFOIO_TOKEN"
+)
+
+const (
+	// ref: https://www.ip2location.com/web-service/ip2proxy
+	defaultIP2ProxyAPIPackage = "PX2"
 )
 
 // Config contains parameters for IP check API providers.
 type Config struct {
-	// ipdata.con
+	// ip2location.com
+	IP2ProxyAPIKey     string
+	IP2ProxyAPIPackage string
+	// ipdata.co
 	IPdatacoAPIKey string
 	// ipinfo.io
 	IPinfoioToken string
@@ -37,6 +47,25 @@ func (c Config) GetLogger() log.Logger {
 		return log.DefaultLogger
 	}
 	return c.Logger
+}
+
+func (c Config) GetIP2ProxyAPIKey() string {
+	s := os.Getenv(envIP2ProxyAPIKey)
+	if s != "" {
+		return s
+	}
+	return c.IP2ProxyAPIKey
+}
+
+func (c Config) GetIP2ProxyAPIPackage() string {
+	s := os.Getenv(envIP2ProxyAPIPackage)
+	if s != "" {
+		return s
+	}
+	if c.IP2ProxyAPIPackage != "" {
+		return c.IP2ProxyAPIPackage
+	}
+	return defaultIP2ProxyAPIPackage
 }
 
 func (c Config) GetIPdatacoAPIKey() string {

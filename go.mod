@@ -4,6 +4,7 @@ go 1.17
 
 require (
 	github.com/evalphobia/minfraud-api-go v0.0.1
+	github.com/ip2location/ip2proxy-go/v3 v3.3.2
 	github.com/ipdata/go v0.7.2
 	github.com/ipinfo/go/v2 v2.5.4
 	github.com/mkideal/cli v0.2.7

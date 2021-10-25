@@ -5,18 +5,21 @@ import (
 	"strings"
 
 	"github.com/evalphobia/go-ip-fraud-check/provider"
+	"github.com/evalphobia/go-ip-fraud-check/provider/ip2proxy"
 	"github.com/evalphobia/go-ip-fraud-check/provider/ipdataco"
 	"github.com/evalphobia/go-ip-fraud-check/provider/ipinfoio"
 	"github.com/evalphobia/go-ip-fraud-check/provider/minfraud"
 )
 
 const (
+	providerIP2Proxy = "ip2proxy"
 	providerIPdataco = "ipdata"
 	providerIPinfoio = "ipinfo"
 	providerMinFraud = "minfraud"
 )
 
 var providerMap = map[string]provider.Provider{
+	providerIP2Proxy: &ip2proxy.IP2ProxyProvider{},
 	providerIPdataco: &ipdataco.IPdatacoProvider{},
 	providerIPinfoio: &ipinfoio.IPinfoioProvider{},
 	providerMinFraud: &minfraud.MinFraudProvider{},
