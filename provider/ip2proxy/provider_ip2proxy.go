@@ -66,11 +66,6 @@ func (p IP2ProxyProvider) CheckIP(ipaddr string) (provider.FraudCheckResponse, e
 	}, nil
 }
 
-type IP2ProxyResult struct {
-	AS        string `json:"as"`
-	ProxyType string `json:"proxyType"`
-}
-
 func (p IP2ProxyProvider) RawCheckIP(ipaddr string) (interface{}, error) {
 	return p.client.LookUp(ipaddr)
 }

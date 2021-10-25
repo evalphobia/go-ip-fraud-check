@@ -9,10 +9,11 @@ import (
 )
 
 const (
-	envIP2ProxyAPIKey     = "FRAUD_CHECK_IP2PROXY_APIKEY"
-	envIP2ProxyAPIPackage = "FRAUD_CHECK_IP2PROXY_PACKAGE"
-	envIPdatacoAPIKey     = "FRAUD_CHECK_IPDATACO_APIKEY"
-	envIPinfoioToken      = "FRAUD_CHECK_IPINFOIO_TOKEN"
+	envIP2ProxyAPIKey      = "FRAUD_CHECK_IP2PROXY_APIKEY"
+	envIP2ProxyAPIPackage  = "FRAUD_CHECK_IP2PROXY_PACKAGE"
+	envIPdatacoAPIKey      = "FRAUD_CHECK_IPDATACO_APIKEY"
+	envIPGeolocationAPIKey = "FRAUD_CHECK_IPGEOLOCATION_APIKEY"
+	envIPinfoioToken       = "FRAUD_CHECK_IPINFOIO_TOKEN"
 )
 
 const (
@@ -27,6 +28,8 @@ type Config struct {
 	IP2ProxyAPIPackage string
 	// ipdata.co
 	IPdatacoAPIKey string
+	// ipgeolocation.io
+	IPGeolocationAPIKey string
 	// ipinfo.io
 	IPinfoioToken string
 	// minFraud
@@ -74,6 +77,14 @@ func (c Config) GetIPdatacoAPIKey() string {
 		return s
 	}
 	return c.IPdatacoAPIKey
+}
+
+func (c Config) GetIPGeolocationAPIKey() string {
+	s := os.Getenv(envIPGeolocationAPIKey)
+	if s != "" {
+		return s
+	}
+	return c.IPGeolocationAPIKey
 }
 
 func (c Config) GetIPinfoioToken() string {
