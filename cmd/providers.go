@@ -9,6 +9,7 @@ import (
 	"github.com/evalphobia/go-ip-fraud-check/provider/ipdataco"
 	"github.com/evalphobia/go-ip-fraud-check/provider/ipgeolocation"
 	"github.com/evalphobia/go-ip-fraud-check/provider/ipinfoio"
+	"github.com/evalphobia/go-ip-fraud-check/provider/ipregistry"
 	"github.com/evalphobia/go-ip-fraud-check/provider/minfraud"
 )
 
@@ -17,6 +18,7 @@ const (
 	providerIPdataco      = "ipdata"
 	providerIPGeolocation = "ipgeolocation"
 	providerIPinfoio      = "ipinfo"
+	providerIPRegistry    = "ipregistry"
 	providerMinFraud      = "minfraud"
 )
 
@@ -25,6 +27,7 @@ var providerMap = map[string]provider.Provider{
 	providerIPdataco:      &ipdataco.IPdatacoProvider{},
 	providerIPGeolocation: &ipgeolocation.IPGeoLocationProvider{},
 	providerIPinfoio:      &ipinfoio.IPinfoioProvider{},
+	providerIPRegistry:    &ipregistry.IPRegistryProvider{},
 	providerMinFraud:      &minfraud.MinFraudProvider{},
 }
 

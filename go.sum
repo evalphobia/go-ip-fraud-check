@@ -2,6 +2,8 @@ github.com/davecgh/go-spew v1.1.0 h1:ZDRjVQ15GmhC3fiQ8ni8+OwkZQO4DARzQgrnXU1Liz8
 github.com/davecgh/go-spew v1.1.0/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/evalphobia/httpwrapper v0.2.2 h1:E821NelrJ7d8pxstjVow5p7aF6xkVGPlpW09PC8WVbE=
 github.com/evalphobia/httpwrapper v0.2.2/go.mod h1:1wE1UGid+FqRAGE5VMdq+SX6SSrLTSm15t08gGkfJ9A=
+github.com/evalphobia/ipregistry-go v0.0.2 h1:YkSRfZksIY+r6ibmUw8g6uuwLqbSE1v1yyY7uxOUQOA=
+github.com/evalphobia/ipregistry-go v0.0.2/go.mod h1:6NF/P772oHDqba+8SLenQ55akQH/ykhO36hlYbn74F8=
 github.com/evalphobia/minfraud-api-go v0.0.1 h1:l8cJTsPqT1BXOXfEz+lgmp2FilZVmJgSR3Ip0ZBiJ8Y=
 github.com/evalphobia/minfraud-api-go v0.0.1/go.mod h1:HbaNnKZFs1GIEG31WfkQn8IESDaK5zilPXDPiW7HmSI=
 github.com/google/go-cmp v0.5.6 h1:BKbKCqvP6I+rmFHt06ZmyQtvB8xAkWdhFyr0ZUNZcxQ=

@@ -57,7 +57,9 @@ go-ip-fraud-check provides both of cli binary and golang API.
 
 - [IP2Proxy](https://www.ip2location.com/web-service/ip2proxy)
 - [ipdata.co](https://ipdata.co/)
+- [ipgeolocation.io](https://ipgeolocation.io/)
 - [ipinfo.io](https://ipinfo.io/)
+- [ipregistry.co](https://ipregistry.co/)
 - [MaxMind minFraud](https://www.maxmind.com/en/solutions/minfraud-services/)
 
 # Quick Usage for binary
@@ -225,6 +227,8 @@ see example dir for more examples.
 | `FRAUD_CHECK_IP2PROXY_APIKEY` | [ip2proxy API key](https://www.ip2location.com/web-service/ip2proxy/). |
 | `FRAUD_CHECK_IP2PROXY_PACKAGE` | [ip2proxy package parameter](https://www.ip2location.com/web-service/ip2proxy/). |
 | `FRAUD_CHECK_IPDATACO_APIKEY` | [ipdata.co API key](https://docs.ipdata.co/). |
+| `FRAUD_CHECK_IPGEOLOCATION_APIKEY` | [ipgeolocation API token](https://ipgeolocation.io/documentation.html). |
 | `FRAUD_CHECK_IPINFOIO_TOKEN` | [ipinfo.io API token](https://ipinfo.io/developers). |
+| `IPREGISTRY_APIKEY` | [Ipregistry API Key](https://ipregistry.co/docs/authentication). |
 | `MINFRAUD_ACCOUNT_ID` | [MaxMind Account ID](https://support.maxmind.com/account-faq/license-keys/how-do-i-generate-a-license-key/). |
 | `MINFRAUD_LICENSE_KEY` | [MaxMind License Key](https://support.maxmind.com/account-faq/license-keys/how-do-i-generate-a-license-key/). |

@@ -32,6 +32,8 @@ type Config struct {
 	IPGeolocationAPIKey string
 	// ipinfo.io
 	IPinfoioToken string
+	// ipregistry.co
+	IPRegistryAPIKey string
 	// minFraud
 	MinFraudAccountID  string
 	MinFraudLicenseKey string

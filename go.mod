@@ -3,6 +3,8 @@ module github.com/evalphobia/go-ip-fraud-check
 go 1.17
 
 require (
+	github.com/evalphobia/httpwrapper v0.2.2
+	github.com/evalphobia/ipregistry-go v0.0.2
 	github.com/evalphobia/minfraud-api-go v0.0.1
 	github.com/ip2location/ip2proxy-go/v3 v3.3.2
 	github.com/ipdata/go v0.7.2
@@ -11,7 +13,6 @@ require (
 )
 
 require (
-	github.com/evalphobia/httpwrapper v0.2.2 // indirect
 	github.com/google/go-cmp v0.5.6 // indirect
 	github.com/labstack/gommon v0.3.0 // indirect
 	github.com/mattn/go-colorable v0.1.7 // indirect
