@@ -15,7 +15,9 @@ func main() {
 	flag.StringVar(&ipaddr, "ipaddr", "", "set target ip address")
 	flag.Parse()
 
-	svc, err := ipfraudcheck.New(ipfraudcheck.Config{}, []provider.Provider{
+	svc, err := ipfraudcheck.New(ipfraudcheck.Config{
+		UseRoute: true,
+	}, []provider.Provider{
 		&ipinfoio.IPinfoioProvider{},
 	})
 	if err != nil {

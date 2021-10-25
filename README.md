@@ -98,6 +98,7 @@ Options:
   -h, --help       display help information
   -p, --provider  *set types of api provider (space separated) --provider='ipdata ipinfo minfraud'
   -i, --ip         input ip address --ip='8.8.8.8'
+      --route      set if you need route data from IRR --route
       --debug      set if you need verbose logs --debug
 ```
 
@@ -111,9 +112,9 @@ $ export FRAUD_CHECK_IPINFOIO_TOKEN=yyy
 # check ip address
 $ ./go-ip-fraud-check single -p 'ipdata ipinfo' -i 8.8.8.8
 
-2021/10/25 00:54:26 [INFO] [INFO] Use ipdata.co
-2021/10/25 00:54:26 [INFO] [INFO] Use ipinfo.io
-{"list":[{"service_name":"ipdata.co","ip":"8.8.8.8","hostname":"","isp":"Google LLC","organization":"","asn":15169,"risk_score":0,"is_anonymous":false,"is_anonymous_vpn":false,"is_hosting":false,"is_proxy":false,"is_tor":false,"is_bot":false,"is_bogon":false,"has_other_threat":false,"country":"US","city":"","region":"","latitude":0,"longitude":0,"error":""},{"service_name":"ipinfo.io","ip":"8.8.8.8","hostname":"dns.google","isp":"","organization":"Google LLC","asn":15169,"risk_score":0,"is_anonymous":false,"is_anonymous_vpn":false,"is_hosting":false,"is_proxy":false,"is_tor":false,"is_bot":false,"is_bogon":false,"has_other_threat":false,"country":"US","city":"Mountain View","region":"California","latitude":37.4056,"longitude":-122.0775,"error":""}]}
+2021/10/25 00:54:26 [INFO] Use ipdata.co
+2021/10/25 00:54:26 [INFO] Use ipinfo.io
+{"list":[{"service_name":"ipdata.co","ip":"8.8.8.8","hostname":"","isp":"Google LLC","organization":"","asn":15169,"risk_score":0,"is_anonymous":false,"is_anonymous_vpn":false,"is_hosting":false,"is_proxy":false,"is_tor":false,"is_bot":false,"is_bogon":false,"has_other_threat":false,"country":"US","city":"","region":"","latitude":0,"longitude":0,"error":""},{"service_name":"ipinfo.io","ip":"8.8.8.8","hostname":"dns.google","isp":"","organization":"Google LLC","asn":15169,"risk_score":0,"is_anonymous":false,"is_anonymous_vpn":false,"is_hosting":false,"is_proxy":false,"is_tor":false,"is_bot":false,"is_bogon":false,"has_other_threat":false,"country":"US","city":"Mountain View","region":"California","latitude":37.4056,"longitude":-122.0775,"error":""}],"as_prefix":["66.249.80.0/20","74.125.57.240/29","216.239.44.0/24", ...]}
 ```
 
 ### list command
@@ -122,6 +123,7 @@ $ ./go-ip-fraud-check single -p 'ipdata ipinfo' -i 8.8.8.8
 
 ```bash
 ./go-ip-fraud-check list -h
+
 Exec api call of ip address fraud check providers from csv list file
 
 Options:
@@ -130,6 +132,7 @@ Options:
   -p, --provider  *set types of api provider (space separated) --provider='ipdata ipinfo minfraud'
   -i, --input     *input csv/tsv file path --input='./input.csv'
   -o, --output    *output tsv file path --output='./output.tsv'
+      --route      set if you need route data from IRR (this might be slow) --route
       --debug      set if you use HTTP debug feature --debug
 ```
 
@@ -150,8 +153,8 @@ ip_address
 
 # check risk from the CSV file
 $ ./go-ip-fraud-check list -p 'ipdata ipinfo' -i ./input.csv -o ./output.tsv
-2021/10/25 00:58:29 [INFO] [INFO] Use ipdata.co
-2021/10/25 00:58:29 [INFO] [INFO] Use ipinfo.io
+2021/10/25 00:58:29 [INFO] Use ipdata.co
+2021/10/25 00:58:29 [INFO] Use ipinfo.io
 2021/10/25 00:58:30 [INFO] exec #: [2]
 2021/10/25 00:58:29 [INFO] exec #: [0]
 2021/10/25 00:58:31 [INFO] exec #: [1]
@@ -185,6 +188,7 @@ func main() {
         // you can set auth values to config directly, otherwise used from environment variables.
 		IPdatacoAPIKey:  "<your ipdata.co API key>",
 		IPinfoioToken:  "<your ipinfo.io API token>",
+		UseRoute:   true,
 		Debug:      false,
 	}
 

@@ -16,6 +16,7 @@ type singleT struct {
 	cli.Helper
 	Provider  string `cli:"*p,provider" usage:"set types of api provider (space separated) --provider='ipdata ipinfo minfraud'"`
 	IPAddress string `cli:"i,ip" usage:"input ip address --ip='8.8.8.8'"`
+	UseRoute  bool   `cli:"route" usage:"set if you need route data from IRR --route"`
 	Debug     bool   `cli:"debug" usage:"set if you need verbose logs --debug"`
 }
 
@@ -45,6 +46,7 @@ type SingleRunner struct {
 	// parameters
 	Provider  string
 	IPAddress string
+	UseRoute  bool
 	Debug     bool
 }
 
@@ -52,6 +54,7 @@ func newSingleRunner(p singleT) SingleRunner {
 	return SingleRunner{
 		Provider:  p.Provider,
 		IPAddress: p.IPAddress,
+		UseRoute:  p.UseRoute,
 		Debug:     p.Debug,
 	}
 }
@@ -63,8 +66,9 @@ func (r *SingleRunner) Run() error {
 	}
 
 	svc, err := ipfraudcheck.New(ipfraudcheck.Config{
-		Debug:  r.Debug,
-		Logger: &log.StdLogger{},
+		UseRoute: r.UseRoute,
+		Debug:    r.Debug,
+		Logger:   &log.StdLogger{},
 	}, providerList)
 	if err != nil {
 		panic(err)

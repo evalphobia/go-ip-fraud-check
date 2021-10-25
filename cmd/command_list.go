@@ -33,6 +33,7 @@ var outputHeader = []string{
 	"is_bot",
 	"is_bogon",
 	"has_other_threat",
+	// "as_routes", append by code
 }
 
 // parameters of 'list' command.
@@ -41,6 +42,7 @@ type listT struct {
 	Provider string `cli:"*p,provider" usage:"set types of api provider (space separated) --provider='ipdata ipinfo minfraud'"`
 	InputCSV string `cli:"*i,input" usage:"input csv/tsv file path --input='./input.csv'"`
 	Output   string `cli:"*o,output" usage:"output tsv file path --output='./output.tsv'"`
+	UseRoute bool   `cli:"route" usage:"set if you need route data from IRR (this might be slow) --route"`
 	Debug    bool   `cli:"debug" usage:"set if you use HTTP debug feature --debug"`
 }
 
@@ -67,6 +69,7 @@ type ListRunner struct {
 	Provider string
 	InputCSV string
 	Output   string
+	UseRoute bool
 	Debug    bool
 }
 
@@ -75,6 +78,7 @@ func newListRunner(p listT) ListRunner {
 		Provider: p.Provider,
 		InputCSV: p.InputCSV,
 		Output:   p.Output,
+		UseRoute: p.UseRoute,
 		Debug:    p.Debug,
 	}
 }
@@ -95,7 +99,8 @@ func (r *ListRunner) Run() error {
 		return err
 	}
 
-	maxReq := make(chan struct{}, 2)
+	maxReqNum := 3
+	maxReq := make(chan struct{}, maxReqNum)
 
 	providerList, err := getProvidersFromString(r.Provider)
 	if err != nil {
@@ -104,11 +109,15 @@ func (r *ListRunner) Run() error {
 
 	logger := &log.StdLogger{}
 	svc, err := ipfraudcheck.New(ipfraudcheck.Config{
-		Debug:  r.Debug,
-		Logger: logger,
+		UseRoute: r.UseRoute,
+		Debug:    r.Debug,
+		Logger:   logger,
 	}, providerList)
 	if err != nil {
 		panic(err)
+	}
+	if r.UseRoute {
+		outputHeader = append(outputHeader, "as_routes")
 	}
 
 	providerSize := len(providerList)
@@ -151,6 +160,10 @@ func (r *ListRunner) execAPI(svc *ipfraudcheck.Client, param map[string]string) 
 	for i, r := range resp.List {
 		row := make([]string, 0, len(outputHeader))
 		for _, v := range outputHeader {
+			if v == "as_routes" {
+				row = append(row, strings.Join(resp.ASPrefix, " "))
+				continue
+			}
 			row = append(row, getValue(param, r, v))
 		}
 		rows[i] = row

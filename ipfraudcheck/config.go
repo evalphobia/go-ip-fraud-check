@@ -24,9 +24,10 @@ type Config struct {
 	MinFraudLicenseKey string
 
 	// common option
-	Debug   bool
-	Timeout time.Duration
-	Logger  log.Logger
+	UseRoute bool
+	Debug    bool
+	Timeout  time.Duration
+	Logger   log.Logger
 }
 
 func (c Config) GetLogger() log.Logger {
