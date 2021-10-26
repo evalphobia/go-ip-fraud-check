@@ -5,6 +5,7 @@ go 1.17
 require (
 	github.com/evalphobia/bigdatacloud-go v0.0.1
 	github.com/evalphobia/httpwrapper v0.2.2
+	github.com/evalphobia/ipqualityscore-go v0.0.1
 	github.com/evalphobia/ipregistry-go v0.0.2
 	github.com/evalphobia/minfraud-api-go v0.0.1
 	github.com/ip2location/ip2proxy-go/v3 v3.3.2

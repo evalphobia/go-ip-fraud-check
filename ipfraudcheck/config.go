@@ -34,6 +34,8 @@ type Config struct {
 	IPGeolocationAPIKey string
 	// ipinfo.io
 	IPinfoioToken string
+	// ipqualityscore.com
+	IPQualityScoreAPIKey string
 	// ipregistry.co
 	IPRegistryAPIKey string
 	// minFraud

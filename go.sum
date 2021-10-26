@@ -4,6 +4,8 @@ github.com/evalphobia/bigdatacloud-go v0.0.1 h1:DLXJqYplHKZzRSH+ZmpLhWvC6pTEwdTa
 github.com/evalphobia/bigdatacloud-go v0.0.1/go.mod h1:PHQ6/SpSOJaeVftELVVVuoDoi2Iu0mNMS++zE7xz92g=
 github.com/evalphobia/httpwrapper v0.2.2 h1:E821NelrJ7d8pxstjVow5p7aF6xkVGPlpW09PC8WVbE=
 github.com/evalphobia/httpwrapper v0.2.2/go.mod h1:1wE1UGid+FqRAGE5VMdq+SX6SSrLTSm15t08gGkfJ9A=
+github.com/evalphobia/ipqualityscore-go v0.0.1 h1:DD/FFnDJ/WCsqQhtkenFL5AQiCi05i5dBEJchAsHdeY=
+github.com/evalphobia/ipqualityscore-go v0.0.1/go.mod h1:Zr75SykQn9cTsY+SEIY9j5iBebtCtvgyiGq7hytPWVQ=
 github.com/evalphobia/ipregistry-go v0.0.2 h1:YkSRfZksIY+r6ibmUw8g6uuwLqbSE1v1yyY7uxOUQOA=
 github.com/evalphobia/ipregistry-go v0.0.2/go.mod h1:6NF/P772oHDqba+8SLenQ55akQH/ykhO36hlYbn74F8=
 github.com/evalphobia/minfraud-api-go v0.0.1 h1:l8cJTsPqT1BXOXfEz+lgmp2FilZVmJgSR3Ip0ZBiJ8Y=
