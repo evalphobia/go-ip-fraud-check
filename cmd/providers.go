@@ -5,6 +5,7 @@ import (
 	"strings"
 
 	"github.com/evalphobia/go-ip-fraud-check/provider"
+	"github.com/evalphobia/go-ip-fraud-check/provider/bigdatacloud"
 	"github.com/evalphobia/go-ip-fraud-check/provider/ip2proxy"
 	"github.com/evalphobia/go-ip-fraud-check/provider/ipdataco"
 	"github.com/evalphobia/go-ip-fraud-check/provider/ipgeolocation"
@@ -14,6 +15,7 @@ import (
 )
 
 const (
+	providerBigDataCloud  = "bigdatacloud"
 	providerIP2Proxy      = "ip2proxy"
 	providerIPdataco      = "ipdata"
 	providerIPGeolocation = "ipgeolocation"
@@ -23,6 +25,7 @@ const (
 )
 
 var providerMap = map[string]provider.Provider{
+	providerBigDataCloud:  &bigdatacloud.BigDataCloudProvider{},
 	providerIP2Proxy:      &ip2proxy.IP2ProxyProvider{},
 	providerIPdataco:      &ipdataco.IPdatacoProvider{},
 	providerIPGeolocation: &ipgeolocation.IPGeoLocationProvider{},

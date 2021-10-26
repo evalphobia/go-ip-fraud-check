@@ -50,11 +50,11 @@ go-ip-fraud-check
 
 
 go-ip-fraud-check has a feature to detect fraud from ip addresss.
-
-go-ip-fraud-check provides both of cli binary and golang API.
+it provides both of cli binary and golang API.
 
 # Supported Providers
 
+- [Big Data Cloud](https://www.bigdatacloud.com/)
 - [IP2Proxy](https://www.ip2location.com/web-service/ip2proxy)
 - [ipdata.co](https://ipdata.co/)
 - [ipgeolocation.io](https://ipgeolocation.io/)
@@ -224,6 +224,7 @@ see example dir for more examples.
 
 | Name | Description |
 |:--|:--|
+| `BIGDATACLOUD_APIKEY` | [Big Data Cloud API Key](https://www.bigdatacloud.com/sdk). |
 | `FRAUD_CHECK_IP2PROXY_APIKEY` | [ip2proxy API key](https://www.ip2location.com/web-service/ip2proxy/). |
 | `FRAUD_CHECK_IP2PROXY_PACKAGE` | [ip2proxy package parameter](https://www.ip2location.com/web-service/ip2proxy/). |
 | `FRAUD_CHECK_IPDATACO_APIKEY` | [ipdata.co API key](https://docs.ipdata.co/). |

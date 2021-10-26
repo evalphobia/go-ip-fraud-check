@@ -1,5 +1,7 @@
 github.com/davecgh/go-spew v1.1.0 h1:ZDRjVQ15GmhC3fiQ8ni8+OwkZQO4DARzQgrnXU1Liz8=
 github.com/davecgh/go-spew v1.1.0/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
+github.com/evalphobia/bigdatacloud-go v0.0.1 h1:DLXJqYplHKZzRSH+ZmpLhWvC6pTEwdTaRwZVZWFbNR4=
+github.com/evalphobia/bigdatacloud-go v0.0.1/go.mod h1:PHQ6/SpSOJaeVftELVVVuoDoi2Iu0mNMS++zE7xz92g=
 github.com/evalphobia/httpwrapper v0.2.2 h1:E821NelrJ7d8pxstjVow5p7aF6xkVGPlpW09PC8WVbE=
 github.com/evalphobia/httpwrapper v0.2.2/go.mod h1:1wE1UGid+FqRAGE5VMdq+SX6SSrLTSm15t08gGkfJ9A=
 github.com/evalphobia/ipregistry-go v0.0.2 h1:YkSRfZksIY+r6ibmUw8g6uuwLqbSE1v1yyY7uxOUQOA=

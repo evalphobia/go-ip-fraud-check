@@ -3,6 +3,7 @@ module github.com/evalphobia/go-ip-fraud-check
 go 1.17
 
 require (
+	github.com/evalphobia/bigdatacloud-go v0.0.1
 	github.com/evalphobia/httpwrapper v0.2.2
 	github.com/evalphobia/ipregistry-go v0.0.2
 	github.com/evalphobia/minfraud-api-go v0.0.1

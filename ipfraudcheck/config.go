@@ -23,6 +23,8 @@ const (
 
 // Config contains parameters for IP check API providers.
 type Config struct {
+	// bigdatacloud.com
+	BigDataCloudAPIKey string
 	// ip2location.com
 	IP2ProxyAPIKey     string
 	IP2ProxyAPIPackage string
