@@ -22,6 +22,7 @@ func (p *IPRegistryProvider) Init(conf provider.Config) error {
 
 	svc, err := ipregistry.New(config.Config{
 		APIKey: c.IPRegistryAPIKey,
+		Debug:  c.Debug,
 	})
 	if err != nil {
 		return err

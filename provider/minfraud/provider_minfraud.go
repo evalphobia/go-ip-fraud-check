@@ -23,6 +23,7 @@ func (p *MinFraudProvider) Init(conf provider.Config) error {
 	svc, err := minfraud.New(config.Config{
 		AccountID:  c.MinFraudAccountID,
 		LicenseKey: c.MinFraudLicenseKey,
+		Debug:      c.Debug,
 	})
 	if err != nil {
 		return err
