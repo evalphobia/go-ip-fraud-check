@@ -39,15 +39,15 @@ type Currency struct {
 
 type TimeZone struct {
 	Name            string  `json:"name"`
-	Offset          int     `json:"offset"`
+	Offset          float64 `json:"offset"`
 	CurrentTime     string  `json:"current_time"`
 	CurrentTimeUnix float64 `json:"current_time_unix"`
 	IsDST           bool    `json:"is_dst"`
-	DSTSavings      int     `json:"dst_savings"`
+	DSTSavings      int64   `json:"dst_savings"`
 }
 
 type Security struct {
-	ThreatScore     int    `json:"threat_score"`
+	ThreatScore     int64  `json:"threat_score"`
 	IsTor           bool   `json:"is_tor"`
 	IsProxy         bool   `json:"is_proxy"`
 	ProxyType       string `json:"proxy_type"`
