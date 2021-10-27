@@ -254,7 +254,7 @@ func getValue(param map[string]string, resp provider.FraudCheckResponse, name st
 		return strconv.FormatFloat(resp.Latitude, 'f', 5, 64)
 	case "longitude":
 		return strconv.FormatFloat(resp.Longitude, 'f', 5, 64)
-	case "is_anonymous_vpn":
+	case "is_vpn":
 		return strconv.FormatBool(resp.IsVPN)
 	case "is_hosting":
 		return strconv.FormatBool(resp.IsHosting)

@@ -62,7 +62,7 @@ it provides both of cli binary and golang API.
 - [IPQualityScore](https://www.ipqualityscore.com/)
 - [ipregistry.co](https://ipregistry.co/)
 - [MaxMind minFraud](https://www.maxmind.com/en/solutions/minfraud-services/)
-- [Shodan](https://sodan.io/)
+- [Shodan](https://shodan.io/)
 
 
 # Quick Usage for binary
@@ -88,6 +88,7 @@ Commands:
   help     show help
   single   Exec api call of ip address fraud check providers for single ip
   list     Exec api call of ip address fraud check providers from csv list file
+  providers   Show supported provider types
 ```
 
 ### single command
@@ -120,7 +121,7 @@ $ ./go-ip-fraud-check single -p 'ipdata ipinfo' -i 8.8.8.8
 
 2021/10/25 00:54:26 [INFO] Use ipdata.co
 2021/10/25 00:54:26 [INFO] Use ipinfo.io
-{"list":[{"service_name":"ipdata.co","ip":"8.8.8.8","hostname":"","isp":"Google LLC","organization":"","asn":15169,"risk_score":0,"is_anonymous":false,"is_anonymous_vpn":false,"is_hosting":false,"is_proxy":false,"is_tor":false,"is_bot":false,"is_bogon":false,"has_other_threat":false,"country":"US","city":"","region":"","latitude":0,"longitude":0,"error":""},{"service_name":"ipinfo.io","ip":"8.8.8.8","hostname":"dns.google","isp":"","organization":"Google LLC","asn":15169,"risk_score":0,"is_anonymous":false,"is_anonymous_vpn":false,"is_hosting":false,"is_proxy":false,"is_tor":false,"is_bot":false,"is_bogon":false,"has_other_threat":false,"country":"US","city":"Mountain View","region":"California","latitude":37.4056,"longitude":-122.0775,"error":""}],"as_prefix":["66.249.80.0/20","74.125.57.240/29","216.239.44.0/24", ...]}
+{"list":[{"service_name":"ipdata.co","ip":"8.8.8.8","hostname":"","isp":"Google LLC","organization":"","asn":15169,"risk_score":0,"is_vpn":false,"is_hosting":false,"is_proxy":false,"is_tor":false,"is_bot":false,"is_bogon":false,"has_other_threat":false,"threat_comment":"","country":"US","city":"","region":"","latitude":0,"longitude":0,"error":""},{"service_name":"ipinfo.io","ip":"8.8.8.8","hostname":"dns.google","isp":"","organization":"Google LLC","asn":15169,"risk_score":0,"is_vpn":false,"is_hosting":false,"is_proxy":false,"is_tor":false,"is_bot":false,"is_bogon":false,"has_other_threat":false,"threat_comment":"","country":"US","city":"Mountain View","region":"California","latitude":37.4056,"longitude":-122.0775,"error":""}],"as_prefix":null}
 ```
 
 ### list command
@@ -169,13 +170,13 @@ $ ./go-ip-fraud-check list -p 'ipdata ipinfo' -i ./input.csv -o ./output.tsv
 2021/10/25 00:58:31 [INFO] exec #: [1]
 
 $ cat output.tsv
-service	ip_address	hostname	risk_score	isp	organization	asn	country	city	region	latitude	longitude	is_anonymous	is_anonymous_vpn	is_hosting	is_proxy	is_tor	is_bot	is_bogon	has_other_threat
-ipdata.co	8.8.8.8		0.00000	Google LLC		15169	US			0.00000	0.00000	false	false	false	false	false	false	false	false
-ipinfo.io	8.8.8.8	dns.google	0.00000		Google LLC	15169	US	Mountain View	California	37.40560	-122.07750	false	false	false	false	false	false	false	false
-ipdata.co	8.8.4.4		0.00000	Google LLC		15169	US			0.00000	0.00000	false	false	false	false	false	false	false	false
-ipinfo.io	8.8.4.4	dns.google	0.00000		Google LLC	15169	US	Mountain View	California	37.40560	-122.07750	false	false	false	false	false	false	false	false
-ipdata.co	1.1.1.1		0.00000	Cloudflare, Inc.		13335	AU			0.00000	0.00000	false	false	false	false	false	false	false	false
-ipinfo.io	1.1.1.1	one.one.one.one	0.00000		Cloudflare, Inc.	13335	US	San Francisco	California37.76210	-122.39710	false	false	true	false	false	false	false	false
+service	ip_address	hostname	risk_score	isp	organization	asn	country	city	region	latitude	longitude	is_vpn	is_hosting	is_proxy	is_tor	is_bot	is_bogon	has_other_threat	threat_comment	error
+ipdata.co	8.8.8.8		0.00000	Google LLC		15169	US			0.00000	0.00000	false	false	false	false	false	false	false
+ipinfo.io	8.8.8.8	dns.google	0.00000		Google LLC	15169	US	Mountain View	California	37.40560	-122.07750	false	false	false	false	false	false	false
+ipdata.co	8.8.4.4		0.00000	Google LLC		15169	US			0.00000	0.00000	false	false	false	false	false	false	false
+ipinfo.io	8.8.4.4	dns.google	0.00000		Google LLC	15169	US	Mountain View	California	37.40560	-122.07750	false	false	false	false	false	false	false
+ipdata.co	1.1.1.1		0.00000	Cloudflare, Inc.		13335	AU			0.00000	0.00000	false	false	false	false	false	false	false
+ipinfo.io	1.1.1.1	one.one.one.one	0.00000		Cloudflare, Inc.	13335	US	San Francisco	California37.76210	-122.39710	false	true	false	false	false	false	false
 
 
 
