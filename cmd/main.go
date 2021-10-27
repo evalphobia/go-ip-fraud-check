@@ -12,6 +12,7 @@ func main() {
 		cli.Tree(help),
 		cli.Tree(singleC),
 		cli.Tree(listC),
+		cli.Tree(providersC),
 	).Run(os.Args[1:]); err != nil {
 		fmt.Fprintln(os.Stderr, err)
 		os.Exit(1)

@@ -2,6 +2,7 @@ package ipfraudcheck
 
 import (
 	"errors"
+	"time"
 
 	"github.com/evalphobia/go-ip-fraud-check/log"
 	"github.com/evalphobia/go-ip-fraud-check/provider"
@@ -11,6 +12,7 @@ type Client struct {
 	logger    log.Logger
 	providers []provider.Provider
 	useRoutes bool
+	interval  time.Duration
 }
 
 func New(conf Config, providers []provider.Provider) (*Client, error) {
@@ -37,6 +39,7 @@ func New(conf Config, providers []provider.Provider) (*Client, error) {
 		logger:    logger,
 		providers: enabledProviders,
 		useRoutes: conf.UseRoute,
+		interval:  conf.Interval,
 	}, nil
 }
 
@@ -58,6 +61,8 @@ func (c Client) CheckIP(ipaddr string) (Response, error) {
 	for i, p := range c.providers {
 		resp, err := p.CheckIP(ipaddr)
 		if err != nil {
+			resp.IP = ipaddr
+			resp.ServiceName = p.String()
 			resp.Err = err.Error()
 		}
 		list[i] = resp
@@ -78,6 +83,12 @@ func (c Client) CheckIP(ipaddr string) (Response, error) {
 		}
 	}
 	return resp, nil
+}
+
+func (c Client) WaitInterval() {
+	if c.interval > 0 {
+		time.Sleep(c.interval)
+	}
 }
 
 type Response struct {

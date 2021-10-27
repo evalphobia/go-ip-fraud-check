@@ -62,6 +62,8 @@ it provides both of cli binary and golang API.
 - [IPQualityScore](https://www.ipqualityscore.com/)
 - [ipregistry.co](https://ipregistry.co/)
 - [MaxMind minFraud](https://www.maxmind.com/en/solutions/minfraud-services/)
+- [Shodan](https://sodan.io/)
+
 
 # Quick Usage for binary
 
@@ -132,12 +134,15 @@ Exec api call of ip address fraud check providers from csv list file
 
 Options:
 
-  -h, --help       display help information
-  -p, --provider  *set types of api provider (space separated) --provider='ipdata ipinfo minfraud'
-  -i, --input     *input csv/tsv file path --input='./input.csv'
-  -o, --output    *output tsv file path --output='./output.tsv'
-      --route      set if you need route data from IRR (this might be slow) --route
-      --debug      set if you use HTTP debug feature --debug
+  -h, --help           display help information
+  -p, --provider      *set types of api provider (space separated) --provider='ipdata ipinfo minfraud'
+  -i, --input         *input csv/tsv file path --input='./input.csv'
+  -o, --output        *output tsv file path --output='./output.tsv'
+      --route          set if you need route data from IRR (this might be slow) --route
+      --interval       time interval after a API call to handle rate limit (ms=msec s=sec, m=min) --interval=1.5s
+  -m, --parallel[=2]   parallel number (multiple API calls) --parallel=2
+  -v, --verbose        set if you need detail logs --verbose
+      --debug          set if you use HTTP debug feature --debug
 ```
 
 For example, you can check ip address from csv list like below
@@ -171,6 +176,21 @@ ipdata.co	8.8.4.4		0.00000	Google LLC		15169	US			0.00000	0.00000	false	false	fa
 ipinfo.io	8.8.4.4	dns.google	0.00000		Google LLC	15169	US	Mountain View	California	37.40560	-122.07750	false	false	false	false	false	false	false	false
 ipdata.co	1.1.1.1		0.00000	Cloudflare, Inc.		13335	AU			0.00000	0.00000	false	false	false	false	false	false	false	false
 ipinfo.io	1.1.1.1	one.one.one.one	0.00000		Cloudflare, Inc.	13335	US	San Francisco	California37.76210	-122.39710	false	false	true	false	false	false	false	false
+
+
+
+# if provider has a rate limit, then use --interval and --parallel option.
+$ ./go-ip-fraud-check list -p 'shodan' -i ./input.csv -o ./output.tsv --interval=1.2s --parallel=1
+```
+
+
+### providers command
+
+`providers` command is used to see supported providers.
+
+```bash
+$ ./go-ip-fraud-check providers
+[bigdatacloud ip2proxy ipdata ipgeolocation ipinfo ipqualityscore ipregistry minfraud shodan]
 ```
 
 # Quick Usage for API
@@ -235,3 +255,4 @@ see example dir for more examples.
 | `IPREGISTRY_APIKEY` | [Ipregistry API Key](https://ipregistry.co/docs/authentication). |
 | `MINFRAUD_ACCOUNT_ID` | [MaxMind Account ID](https://support.maxmind.com/account-faq/license-keys/how-do-i-generate-a-license-key/). |
 | `MINFRAUD_LICENSE_KEY` | [MaxMind License Key](https://support.maxmind.com/account-faq/license-keys/how-do-i-generate-a-license-key/). |
+| `FRAUD_CHECK_SHODAN_APIKEY` | [Shodan API Key](https://developer.shodan.io/api/requirements). |

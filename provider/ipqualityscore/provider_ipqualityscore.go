@@ -55,7 +55,7 @@ func (p IPQualityScoreProvider) CheckIP(ipaddr string) (provider.FraudCheckRespo
 		RiskScore:      resp.FraudScore / float64(100),
 		ASNumber:       resp.ASN,
 		IsProxy:        resp.Proxy,
-		IsAnonymousVPN: resp.VPN || resp.ActiveVPN,
+		IsVPN:          resp.VPN || resp.ActiveVPN,
 		IsTor:          resp.Tor || resp.ActiveTor,
 		IsBot:          resp.BotStatus,
 		HasOtherThreat: resp.RecentAbuse,

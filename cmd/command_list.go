@@ -1,9 +1,14 @@
 package main
 
 import (
+	"fmt"
+	"os"
+	"os/signal"
 	"strconv"
 	"strings"
 	"sync"
+	"syscall"
+	"time"
 
 	"github.com/mkideal/cli"
 
@@ -25,14 +30,15 @@ var outputHeader = []string{
 	"region",
 	"latitude",
 	"longitude",
-	"is_anonymous",
-	"is_anonymous_vpn",
+	"is_vpn",
 	"is_hosting",
 	"is_proxy",
 	"is_tor",
 	"is_bot",
 	"is_bogon",
 	"has_other_threat",
+	"threat_comment",
+	"error",
 	// "as_routes", append by code
 }
 
@@ -43,10 +49,19 @@ type listT struct {
 	InputCSV string `cli:"*i,input" usage:"input csv/tsv file path --input='./input.csv'"`
 	Output   string `cli:"*o,output" usage:"output tsv file path --output='./output.tsv'"`
 	UseRoute bool   `cli:"route" usage:"set if you need route data from IRR (this might be slow) --route"`
+	Interval string `cli:"interval" usage:"time interval after a API call to handle rate limit (ms=msec s=sec, m=min) --interval=1.5s"`
+	Parallel int    `cli:"m,parallel" usage:"parallel number (multiple API calls) --parallel=2" dft:"2"`
+	Verbose  bool   `cli:"v,verbose" usage:"set if you need detail logs --verbose"`
 	Debug    bool   `cli:"debug" usage:"set if you use HTTP debug feature --debug"`
 }
 
 func (a *listT) Validate(ctx *cli.Context) error {
+	if a.Interval != "" {
+		if _, err := time.ParseDuration(a.Interval); err != nil {
+			return fmt.Errorf("invalid 'interval' format: [%w]", err)
+		}
+	}
+
 	return validateProviderString(a.Provider)
 }
 
@@ -69,8 +84,13 @@ type ListRunner struct {
 	Provider string
 	InputCSV string
 	Output   string
+	Parallel int
 	UseRoute bool
+	Interval string
+	Verbose  bool
 	Debug    bool
+
+	logger log.Logger
 }
 
 func newListRunner(p listT) ListRunner {
@@ -78,7 +98,10 @@ func newListRunner(p listT) ListRunner {
 		Provider: p.Provider,
 		InputCSV: p.InputCSV,
 		Output:   p.Output,
+		Parallel: p.Parallel,
 		UseRoute: p.UseRoute,
+		Interval: p.Interval,
+		Verbose:  p.Verbose,
 		Debug:    p.Debug,
 	}
 }
@@ -99,17 +122,26 @@ func (r *ListRunner) Run() error {
 		return err
 	}
 
-	maxReqNum := 3
-	maxReq := make(chan struct{}, maxReqNum)
-
 	providerList, err := getProvidersFromString(r.Provider)
 	if err != nil {
 		panic(err)
 	}
 
+	// parse interval duration
+	var interval time.Duration
+	if r.Interval != "" {
+		v, err := time.ParseDuration(r.Interval)
+		if err != nil {
+			return err
+		}
+		interval = v
+	}
+
 	logger := &log.StdLogger{}
+	r.logger = logger
 	svc, err := ipfraudcheck.New(ipfraudcheck.Config{
 		UseRoute: r.UseRoute,
+		Interval: interval,
 		Debug:    r.Debug,
 		Logger:   logger,
 	}, providerList)
@@ -122,6 +154,20 @@ func (r *ListRunner) Run() error {
 
 	providerSize := len(providerList)
 	result := make([]string, len(lines)*providerSize)
+
+	// handle kill signal
+	sig := make(chan os.Signal, 1)
+	signal.Notify(sig, os.Interrupt, syscall.SIGTERM)
+	go func() {
+		<-sig
+		logger.Errorf("Stop signal detected!")
+		logger.Errorf("Saving intermediate results...")
+		result = append([]string{strings.Join(outputHeader, "\t")}, result...)
+		w.WriteAll(result)
+		os.Exit(2)
+	}()
+
+	maxReq := make(chan struct{}, r.Parallel)
 	var wg sync.WaitGroup
 	for i, line := range lines {
 		i = i * providerSize
@@ -133,8 +179,9 @@ func (r *ListRunner) Run() error {
 				wg.Done()
 			}()
 
-			logger.Infof("exec #: [%d]\n", i/providerSize)
-			rows, err := r.execAPI(svc, line)
+			num := i / providerSize
+			logger.Infof("exec #: [%d]\n", num)
+			rows, err := r.execAPI(svc, line, num)
 			if err != nil {
 				logger.Errorf("#: [%d]; err=[%v]\n", i, err)
 				return
@@ -142,29 +189,39 @@ func (r *ListRunner) Run() error {
 			for j, row := range rows {
 				result[i+j] = strings.Join(row, "\t")
 			}
+			svc.WaitInterval()
 		}(i, line)
 	}
 	wg.Wait()
 
 	result = append([]string{strings.Join(outputHeader, "\t")}, result...)
+	logger.Infof("Finished")
 	return w.WriteAll(result)
 }
 
-func (r *ListRunner) execAPI(svc *ipfraudcheck.Client, param map[string]string) ([][]string, error) {
+func (r *ListRunner) execAPI(svc *ipfraudcheck.Client, param map[string]string, num int) ([][]string, error) {
 	resp, err := svc.CheckIP(param["ip_address"])
 	if err != nil {
 		return nil, err
 	}
 
 	rows := make([][]string, len(resp.List))
-	for i, r := range resp.List {
+	for i, res := range resp.List {
 		row := make([]string, 0, len(outputHeader))
 		for _, v := range outputHeader {
 			if v == "as_routes" {
 				row = append(row, strings.Join(resp.ASPrefix, " "))
 				continue
 			}
-			row = append(row, getValue(param, r, v))
+			row = append(row, getValue(param, res, v))
+		}
+		if r.Verbose {
+			switch {
+			case res.Err != "":
+				r.logger.Errorf("#: [%d]; provider=[%s] ip=[%s]  err=[%v]\n", num, res.ServiceName, res.IP, res.Err)
+			default:
+				r.logger.Infof("#: [%d]; provider=[%s] ip=[%s]  row=[%v]\n", num, res.ServiceName, res.IP, row)
+			}
 		}
 		rows[i] = row
 	}
@@ -197,10 +254,8 @@ func getValue(param map[string]string, resp provider.FraudCheckResponse, name st
 		return strconv.FormatFloat(resp.Latitude, 'f', 5, 64)
 	case "longitude":
 		return strconv.FormatFloat(resp.Longitude, 'f', 5, 64)
-	case "is_anonymous":
-		return strconv.FormatBool(resp.IsAnonymous)
 	case "is_anonymous_vpn":
-		return strconv.FormatBool(resp.IsAnonymousVPN)
+		return strconv.FormatBool(resp.IsVPN)
 	case "is_hosting":
 		return strconv.FormatBool(resp.IsHosting)
 	case "is_proxy":
@@ -213,6 +268,10 @@ func getValue(param map[string]string, resp provider.FraudCheckResponse, name st
 		return strconv.FormatBool(resp.IsBogon)
 	case "has_other_threat":
 		return strconv.FormatBool(resp.HasOtherThreat)
+	case "threat_comment":
+		return resp.ThreatComment
+	case "error":
+		return resp.Err
 	}
 	return ""
 }

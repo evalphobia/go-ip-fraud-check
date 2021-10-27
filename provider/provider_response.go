@@ -11,14 +11,14 @@ type FraudCheckResponse struct {
 	ASNumber     int64  `json:"asn"`
 
 	RiskScore      float64 `json:"risk_score"` // 0 ~ 1
-	IsAnonymous    bool    `json:"is_anonymous"`
-	IsAnonymousVPN bool    `json:"is_anonymous_vpn"`
+	IsVPN          bool    `json:"is_vpn"`
 	IsHosting      bool    `json:"is_hosting"`
 	IsProxy        bool    `json:"is_proxy"`
 	IsTor          bool    `json:"is_tor"`
 	IsBot          bool    `json:"is_bot"`
 	IsBogon        bool    `json:"is_bogon"`
 	HasOtherThreat bool    `json:"has_other_threat"`
+	ThreatComment  string  `json:"threat_comment"`
 
 	Country   string  `json:"country"`
 	City      string  `json:"city"`

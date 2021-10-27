@@ -14,6 +14,7 @@ const (
 	envIPdatacoAPIKey      = "FRAUD_CHECK_IPDATACO_APIKEY"
 	envIPGeolocationAPIKey = "FRAUD_CHECK_IPGEOLOCATION_APIKEY"
 	envIPinfoioToken       = "FRAUD_CHECK_IPINFOIO_TOKEN"
+	envShodanAPIKey        = "FRAUD_CHECK_SHODAN_APIKEY"
 )
 
 const (
@@ -41,9 +42,12 @@ type Config struct {
 	// minFraud
 	MinFraudAccountID  string
 	MinFraudLicenseKey string
+	// shodan.io
+	ShodanAPIKey string
 
 	// common option
 	UseRoute bool
+	Interval time.Duration
 	Debug    bool
 	Timeout  time.Duration
 	Logger   log.Logger
@@ -99,4 +103,12 @@ func (c Config) GetIPinfoioToken() string {
 		return s
 	}
 	return c.IPinfoioToken
+}
+
+func (c Config) GetShodanAPIKey() string {
+	s := os.Getenv(envShodanAPIKey)
+	if s != "" {
+		return s
+	}
+	return c.ShodanAPIKey
 }
