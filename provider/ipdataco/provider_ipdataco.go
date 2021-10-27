@@ -56,6 +56,7 @@ func (p IPdatacoProvider) CheckIP(ipaddr string) (provider.FraudCheckResponse, e
 		ServiceName:    p.String(),
 		IP:             resp.IP,
 		ISP:            resp.ASN.Name,
+		Organization:   resp.Organization,
 		ASNumber:       asn,
 		IsProxy:        threat.IsProxy,
 		IsTor:          threat.IsTOR,
@@ -64,6 +65,8 @@ func (p IPdatacoProvider) CheckIP(ipaddr string) (provider.FraudCheckResponse, e
 		Region:         resp.Region,
 		Country:        resp.CountryCode,
 		City:           resp.City,
+		Latitude:       resp.Latitude,
+		Longitude:      resp.Longitude,
 	}, nil
 }
 
