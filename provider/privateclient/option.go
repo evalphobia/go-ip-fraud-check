@@ -15,6 +15,7 @@ var defaultUserAgent = fmt.Sprintf("go-ip-fraud-check/%s", clientVersion)
 // Option contains optional setting of RESTClient.
 type Option struct {
 	BaseURL   string
+	Headers   map[string]string
 	UserAgent string
 	Timeout   time.Duration
 	Debug     bool
@@ -41,4 +42,11 @@ func (o Option) getTimeout() time.Duration {
 		return o.Timeout
 	}
 	return defaultTimeout
+}
+
+func (o Option) getHeaders() map[string]string {
+	if len(o.Headers) != 0 {
+		return o.Headers
+	}
+	return nil
 }

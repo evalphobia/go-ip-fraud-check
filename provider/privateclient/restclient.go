@@ -37,6 +37,7 @@ func (c *RESTClient) CallGET(path string, params, result interface{}) (err error
 		Pass:      c.BasicAuthPass,
 		Retry:     opt.Retry,
 		Debug:     opt.Debug,
+		Headers:   opt.getHeaders(),
 		UserAgent: opt.getUserAgent(),
 		Timeout:   opt.getTimeout(),
 	})
@@ -61,6 +62,7 @@ func (c *RESTClient) CallPOST(path string, params, result interface{}) (err erro
 		Pass:        c.BasicAuthPass,
 		Retry:       opt.Retry,
 		Debug:       opt.Debug,
+		Headers:     opt.getHeaders(),
 		UserAgent:   opt.getUserAgent(),
 		Timeout:     opt.getTimeout(),
 	})
