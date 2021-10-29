@@ -10,6 +10,7 @@ import (
 	"github.com/evalphobia/go-ip-fraud-check/provider/ip2proxy"
 	"github.com/evalphobia/go-ip-fraud-check/provider/ipdataco"
 	"github.com/evalphobia/go-ip-fraud-check/provider/ipgeolocation"
+	"github.com/evalphobia/go-ip-fraud-check/provider/ipify"
 	"github.com/evalphobia/go-ip-fraud-check/provider/ipinfoio"
 	"github.com/evalphobia/go-ip-fraud-check/provider/ipqualityscore"
 	"github.com/evalphobia/go-ip-fraud-check/provider/ipregistry"
@@ -24,6 +25,7 @@ const (
 	providerIP2Proxy      = "ip2proxy"
 	providerIPdataco      = "ipdata"
 	providerIPGeolocation = "ipgeolocation"
+	providerIPify         = "ipify"
 	providerIPinfoio      = "ipinfo"
 	providerIPQS          = "ipqualityscore"
 	providerIPRegistry    = "ipregistry"
@@ -38,6 +40,7 @@ var providerMap = map[string]provider.Provider{
 	providerIP2Proxy:      &ip2proxy.IP2ProxyProvider{},
 	providerIPdataco:      &ipdataco.IPdatacoProvider{},
 	providerIPGeolocation: &ipgeolocation.IPGeoLocationProvider{},
+	providerIPify:         &ipify.IPifyProvider{},
 	providerIPinfoio:      &ipinfoio.IPinfoioProvider{},
 	providerIPQS:          &ipqualityscore.IPQualityScoreProvider{},
 	providerIPRegistry:    &ipregistry.IPRegistryProvider{},

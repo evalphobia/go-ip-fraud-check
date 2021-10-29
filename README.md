@@ -59,6 +59,7 @@ it provides both of cli binary and golang API.
 - [IP2Proxy](https://www.ip2location.com/web-service/ip2proxy)
 - [ipdata](https://ipdata.co/)
 - [ipgeolocation](https://ipgeolocation.io/)
+- [ipify.org](https://www.ipify.org/)
 - [ipinfo.io](https://ipinfo.io/)
 - [IPQualityScore](https://www.ipqualityscore.com/)
 - [Ipregistry](https://ipregistry.co/)
@@ -253,7 +254,8 @@ see example dir for more examples.
 | `FRAUD_CHECK_IP2PROXY_APIKEY` | [ip2proxy API key](https://www.ip2location.com/web-service/ip2proxy/). |
 | `FRAUD_CHECK_IP2PROXY_PACKAGE` | [ip2proxy package parameter](https://www.ip2location.com/web-service/ip2proxy/). |
 | `FRAUD_CHECK_IPDATACO_APIKEY` | [ipdata.co API key](https://docs.ipdata.co/). |
-| `FRAUD_CHECK_IPGEOLOCATION_APIKEY` | [ipgeolocation API token](https://ipgeolocation.io/documentation.html). |
+| `FRAUD_CHECK_IPGEOLOCATION_APIKEY` | [ipgeolocation API key](https://ipgeolocation.io/documentation.html). |
+| `FRAUD_CHECK_IPIFY_APIKEY` | [ipify API key](https://geo.ipify.org/docs). |
 | `FRAUD_CHECK_IPINFOIO_TOKEN` | [ipinfo.io API token](https://ipinfo.io/developers). |
 | `IPQS_APIKEY` | [IPQualityScore API Key](https://www.ipqualityscore.com/documentation/overview). |
 | `FRAUD_CHECK_IPSTACK_APIKEY` | [ipstack API key](https://ipstack.com/documentation). |

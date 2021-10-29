@@ -14,6 +14,7 @@ const (
 	envIP2ProxyAPIPackage  = "FRAUD_CHECK_IP2PROXY_PACKAGE"
 	envIPdatacoAPIKey      = "FRAUD_CHECK_IPDATACO_APIKEY"
 	envIPGeolocationAPIKey = "FRAUD_CHECK_IPGEOLOCATION_APIKEY"
+	envIPifyAPIKey         = "FRAUD_CHECK_IPIFY_APIKEY"
 	envIPinfoioToken       = "FRAUD_CHECK_IPINFOIO_TOKEN"
 	envIPStackAPIKey       = "FRAUD_CHECK_IPSTACK_APIKEY"
 	envShodanAPIKey        = "FRAUD_CHECK_SHODAN_APIKEY"
@@ -37,6 +38,8 @@ type Config struct {
 	IPdatacoAPIKey string
 	// ipgeolocation.io
 	IPGeolocationAPIKey string
+	// ipify.org
+	IPifyAPIKey string
 	// ipinfo.io
 	IPinfoioToken string
 	// ipqualityscore.com
@@ -109,6 +112,14 @@ func (c Config) GetIPGeolocationAPIKey() string {
 		return s
 	}
 	return c.IPGeolocationAPIKey
+}
+
+func (c Config) GetIPifyAPIKey() string {
+	s := os.Getenv(envIPifyAPIKey)
+	if s != "" {
+		return s
+	}
+	return c.IPifyAPIKey
 }
 
 func (c Config) GetIPinfoioToken() string {
