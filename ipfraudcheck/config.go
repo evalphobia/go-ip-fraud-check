@@ -10,6 +10,7 @@ import (
 
 const (
 	envAbuseIPDBAPIKey     = "FRAUD_CHECK_ABUSEIPDB_APIKEY"
+	envDBIPAPIKey          = "FRAUD_CHECK_DBIP_APIKEY"
 	envIP2ProxyAPIKey      = "FRAUD_CHECK_IP2PROXY_APIKEY"
 	envIP2ProxyAPIPackage  = "FRAUD_CHECK_IP2PROXY_PACKAGE"
 	envIPAPIComAPIKey      = "FRAUD_CHECK_IPAPICOM_APIKEY"
@@ -30,6 +31,8 @@ const (
 type Config struct {
 	// abuseipdb.com
 	AbuseIPDBAPIKey string
+	// db-ip.com
+	DBIPAPIKey string
 	// bigdatacloud.com
 	BigDataCloudAPIKey string
 	// ip2location.com
@@ -80,6 +83,14 @@ func (c Config) GetAbuseIPDBAPIKey() string {
 		return s
 	}
 	return c.AbuseIPDBAPIKey
+}
+
+func (c Config) GetDBIPAPIKey() string {
+	s := os.Getenv(envDBIPAPIKey)
+	if s != "" {
+		return s
+	}
+	return c.DBIPAPIKey
 }
 
 func (c Config) GetIP2ProxyAPIKey() string {

@@ -56,7 +56,9 @@ it provides both of cli binary and golang API.
 
 - [AbuseIPDB](https://www.abuseipdb.com/)
 - [Big Data Cloud](https://www.bigdatacloud.com/)
+- [dbip](https://db-ip.com)
 - [IP2Proxy](https://www.ip2location.com/web-service/ip2proxy)
+- [ip-api.com](https://ip-api.com/)
 - [ipdata](https://ipdata.co/)
 - [ipgeolocation](https://ipgeolocation.io/)
 - [ipify.org](https://www.ipify.org/)
@@ -251,6 +253,7 @@ see example dir for more examples.
 |:--|:--|
 | `FRAUD_CHECK_ABUSEIPDB_APIKEY` | [AbuseIPDB API Key](https://docs.abuseipdb.com/). |
 | `BIGDATACLOUD_APIKEY` | [Big Data Cloud API Key](https://www.bigdatacloud.com/sdk). |
+| `FRAUD_CHECK_DBIP_APIKEY` | [dbip API key](https://db-ip.com/api/doc.php). |
 | `FRAUD_CHECK_IP2PROXY_APIKEY` | [ip2proxy API key](https://www.ip2location.com/web-service/ip2proxy/). |
 | `FRAUD_CHECK_IP2PROXY_PACKAGE` | [ip2proxy package parameter](https://www.ip2location.com/web-service/ip2proxy/). |
 | `FRAUD_CHECK_IPDATACO_APIKEY` | [ipdata.co API key](https://docs.ipdata.co/). |

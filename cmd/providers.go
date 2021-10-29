@@ -7,6 +7,7 @@ import (
 	"github.com/evalphobia/go-ip-fraud-check/provider"
 	"github.com/evalphobia/go-ip-fraud-check/provider/abuseipdb"
 	"github.com/evalphobia/go-ip-fraud-check/provider/bigdatacloud"
+	"github.com/evalphobia/go-ip-fraud-check/provider/dbip"
 	"github.com/evalphobia/go-ip-fraud-check/provider/ip2proxy"
 	"github.com/evalphobia/go-ip-fraud-check/provider/ipapicom"
 	"github.com/evalphobia/go-ip-fraud-check/provider/ipdataco"
@@ -23,6 +24,7 @@ import (
 const (
 	providerAbuseIPDB     = "abuseipdb"
 	providerBigDataCloud  = "bigdatacloud"
+	providerDBIP          = "dbip"
 	providerIP2Proxy      = "ip2proxy"
 	providerIPAPICom      = "ip-api"
 	providerIPdataco      = "ipdata"
@@ -39,6 +41,7 @@ const (
 var providerMap = map[string]provider.Provider{
 	providerAbuseIPDB:     &abuseipdb.AbuseIPDBProvider{},
 	providerBigDataCloud:  &bigdatacloud.BigDataCloudProvider{},
+	providerDBIP:          &dbip.DBIPProvider{},
 	providerIP2Proxy:      &ip2proxy.IP2ProxyProvider{},
 	providerIPAPICom:      &ipapicom.IPAPIComProvider{},
 	providerIPdataco:      &ipdataco.IPdatacoProvider{},
