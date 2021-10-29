@@ -46,6 +46,7 @@ func (p IPifyProvider) CheckIP(ipaddr string) (provider.FraudCheckResponse, erro
 		ServiceName: p.String(),
 		IP:          resp.IP,
 		ISP:         resp.ISP,
+		Hostname:    resp.AS.Domain,
 		ASNumber:    as.ASN,
 		Country:     loc.Country,
 		City:        loc.City,
