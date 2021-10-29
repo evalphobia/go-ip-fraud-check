@@ -15,6 +15,7 @@ const (
 	envIPdatacoAPIKey      = "FRAUD_CHECK_IPDATACO_APIKEY"
 	envIPGeolocationAPIKey = "FRAUD_CHECK_IPGEOLOCATION_APIKEY"
 	envIPinfoioToken       = "FRAUD_CHECK_IPINFOIO_TOKEN"
+	envIPStackAPIKey       = "FRAUD_CHECK_IPSTACK_APIKEY"
 	envShodanAPIKey        = "FRAUD_CHECK_SHODAN_APIKEY"
 )
 
@@ -42,6 +43,8 @@ type Config struct {
 	IPQualityScoreAPIKey string
 	// ipregistry.co
 	IPRegistryAPIKey string
+	// ipstack.com
+	IPStackAPIKey string
 	// minFraud
 	MinFraudAccountID  string
 	MinFraudLicenseKey string
@@ -65,7 +68,7 @@ func (c Config) GetLogger() log.Logger {
 	return c.Logger
 }
 
-func (c Config) GetAbuseUPDBAPIKey() string {
+func (c Config) GetAbuseIPDBAPIKey() string {
 	s := os.Getenv(envAbuseIPDBAPIKey)
 	if s != "" {
 		return s
@@ -114,6 +117,14 @@ func (c Config) GetIPinfoioToken() string {
 		return s
 	}
 	return c.IPinfoioToken
+}
+
+func (c Config) GetIPStackAPIKey() string {
+	s := os.Getenv(envIPStackAPIKey)
+	if s != "" {
+		return s
+	}
+	return c.IPStackAPIKey
 }
 
 func (c Config) GetShodanAPIKey() string {

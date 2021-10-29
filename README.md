@@ -57,11 +57,12 @@ it provides both of cli binary and golang API.
 - [AbuseIPDB](https://www.abuseipdb.com/)
 - [Big Data Cloud](https://www.bigdatacloud.com/)
 - [IP2Proxy](https://www.ip2location.com/web-service/ip2proxy)
-- [ipdata.co](https://ipdata.co/)
-- [ipgeolocation.io](https://ipgeolocation.io/)
+- [ipdata](https://ipdata.co/)
+- [ipgeolocation](https://ipgeolocation.io/)
 - [ipinfo.io](https://ipinfo.io/)
 - [IPQualityScore](https://www.ipqualityscore.com/)
-- [ipregistry.co](https://ipregistry.co/)
+- [Ipregistry](https://ipregistry.co/)
+- [ipstack](https://ipstack.com/)
 - [MaxMind minFraud](https://www.maxmind.com/en/solutions/minfraud-services/)
 - [Shodan](https://shodan.io/)
 
@@ -255,6 +256,7 @@ see example dir for more examples.
 | `FRAUD_CHECK_IPGEOLOCATION_APIKEY` | [ipgeolocation API token](https://ipgeolocation.io/documentation.html). |
 | `FRAUD_CHECK_IPINFOIO_TOKEN` | [ipinfo.io API token](https://ipinfo.io/developers). |
 | `IPQS_APIKEY` | [IPQualityScore API Key](https://www.ipqualityscore.com/documentation/overview). |
+| `FRAUD_CHECK_IPSTACK_APIKEY` | [ipstack API key](https://ipstack.com/documentation). |
 | `IPREGISTRY_APIKEY` | [Ipregistry API Key](https://ipregistry.co/docs/authentication). |
 | `MINFRAUD_ACCOUNT_ID` | [MaxMind Account ID](https://support.maxmind.com/account-faq/license-keys/how-do-i-generate-a-license-key/). |
 | `MINFRAUD_LICENSE_KEY` | [MaxMind License Key](https://support.maxmind.com/account-faq/license-keys/how-do-i-generate-a-license-key/). |

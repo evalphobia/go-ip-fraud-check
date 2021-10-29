@@ -19,7 +19,7 @@ func (p *AbuseIPDBProvider) Init(conf provider.Config) error {
 		return errors.New("incompatible config type for AbuseIPDBProvider")
 	}
 
-	apiKey := c.GetAbuseUPDBAPIKey()
+	apiKey := c.GetAbuseIPDBAPIKey()
 	if apiKey == "" {
 		return errors.New("apikey for AbuseIPDB is empty. you must set directly or use 'FRAUD_CHECK_ABUSEIPDB_APIKEY' envvar")
 	}
