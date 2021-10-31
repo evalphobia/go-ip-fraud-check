@@ -68,6 +68,7 @@ it provides both of cli binary and golang API.
 - [ipstack](https://ipstack.com/)
 - [MaxMind minFraud](https://www.maxmind.com/en/solutions/minfraud-services/)
 - [Shodan](https://shodan.io/)
+- [Spur](https://spur.us/)
 
 
 # Quick Usage for binary
@@ -266,3 +267,4 @@ see example dir for more examples.
 | `MINFRAUD_ACCOUNT_ID` | [MaxMind Account ID](https://support.maxmind.com/account-faq/license-keys/how-do-i-generate-a-license-key/). |
 | `MINFRAUD_LICENSE_KEY` | [MaxMind License Key](https://support.maxmind.com/account-faq/license-keys/how-do-i-generate-a-license-key/). |
 | `FRAUD_CHECK_SHODAN_APIKEY` | [Shodan API Key](https://developer.shodan.io/api/requirements). |
+| `FRAUD_CHECK_SPUR_TOKEN` | [spur API token](https://spur.us/products/context-api). |

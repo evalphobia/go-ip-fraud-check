@@ -20,6 +20,7 @@ const (
 	envIPinfoioToken       = "FRAUD_CHECK_IPINFOIO_TOKEN"
 	envIPStackAPIKey       = "FRAUD_CHECK_IPSTACK_APIKEY"
 	envShodanAPIKey        = "FRAUD_CHECK_SHODAN_APIKEY"
+	envSpurToken           = "FRAUD_CHECK_SPUR_TOKEN"
 )
 
 const (
@@ -59,6 +60,8 @@ type Config struct {
 	MinFraudLicenseKey string
 	// shodan.io
 	ShodanAPIKey string
+	// spur.us
+	SpurToken string
 
 	// common option
 	UseRoute bool
@@ -166,4 +169,12 @@ func (c Config) GetShodanAPIKey() string {
 		return s
 	}
 	return c.ShodanAPIKey
+}
+
+func (c Config) GetSpurToken() string {
+	s := os.Getenv(envSpurToken)
+	if s != "" {
+		return s
+	}
+	return c.SpurToken
 }

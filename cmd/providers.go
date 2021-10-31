@@ -19,6 +19,7 @@ import (
 	"github.com/evalphobia/go-ip-fraud-check/provider/ipstack"
 	"github.com/evalphobia/go-ip-fraud-check/provider/minfraud"
 	"github.com/evalphobia/go-ip-fraud-check/provider/shodan"
+	"github.com/evalphobia/go-ip-fraud-check/provider/spur"
 )
 
 const (
@@ -36,6 +37,7 @@ const (
 	providerIPStack       = "ipstack"
 	providerMinFraud      = "minfraud"
 	providerShodan        = "shodan"
+	providerSpur          = "spur"
 )
 
 var providerMap = map[string]provider.Provider{
@@ -53,6 +55,7 @@ var providerMap = map[string]provider.Provider{
 	providerIPStack:       &ipstack.IPStackProvider{},
 	providerMinFraud:      &minfraud.MinFraudProvider{},
 	providerShodan:        &shodan.ShodanProvider{},
+	providerSpur:          &spur.SpurProvider{},
 }
 
 func validateProviderString(s string) error {
